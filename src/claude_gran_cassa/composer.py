@@ -9,7 +9,6 @@ class Composer:
         self.client = Anthropic(api_key=api_key)
 
     def _create_system_prompt(self) -> str:
-        """Create a detailed system prompt that guides Claude to consistent responses"""
         return """You are a techno music producer specializing in rhythm programming. Generate drum patterns in the following exact JSON format:
 
 {
@@ -65,7 +64,6 @@ Example valid pattern:
 
     def _validate_response(self, response: str) -> str:
         """Validate and clean Claude's response"""
-        # Remove any non-JSON text before or after
         try:
             start = response.find("{")
             end = response.rfind("}") + 1
@@ -106,15 +104,14 @@ Example valid pattern:
                 ],
             },
             "polyrhythm": {
-                # Add example with triplets/polyrhythms
+                # TODO: Add example with triplets/polyrhythms
             },
             "breakbeat": {
-                # Add example with complex kick patterns
+                # TODO: Add example with complex kick patterns
             },
-            # Add more examples for different styles
+            # TODO: Add more examples for different styles
         }
 
-        # Match prompt keywords to examples
         for key in examples:
             if key in prompt.lower():
                 return f"\nHere's a relevant example:\n{json.dumps(examples[key], indent=2)}"
