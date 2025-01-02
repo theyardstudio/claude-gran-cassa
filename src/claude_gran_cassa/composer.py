@@ -63,7 +63,6 @@ Example valid pattern:
 }"""
 
     def _validate_response(self, response: str) -> str:
-        """Validate and clean Claude's response"""
         try:
             start = response.find("{")
             end = response.rfind("}") + 1
@@ -85,7 +84,6 @@ Example valid pattern:
             raise ValueError(f"Invalid response format: {str(e)}\nResponse: {response}")
 
     def _get_example_for_prompt(self, prompt: str) -> str:
-        """Get a relevant example pattern based on the prompt keywords"""
         examples = {
             "minimal": {
                 "config": {"bpm": 130, "time_signature": [4, 4], "swing_amount": 0.0},
